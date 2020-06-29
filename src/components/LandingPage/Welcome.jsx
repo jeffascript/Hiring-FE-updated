@@ -6,7 +6,7 @@ import DisplayCard from '../../components/CardComponent/DisplayCard';
 
 const Welcome = () => {
 
-    const state = useSelector(state => state)
+    const state = useSelector( state => state)
     const dispatch = useDispatch();
 
     useEffect(() => {
