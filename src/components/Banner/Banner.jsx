@@ -1,9 +1,12 @@
-import React from "react";
-import { Container, Row, Col, Image } from "reactstrap";
+import React, { useState } from "react";
+import { Container, Row } from "reactstrap";
 import BlockButton from "../BlockButton/BlockButton";
+import DisplayModal from "./DisplayModal";
+import LoginIcon from "../../assets/icons/User.png";
 
 export default () => {
   let text = "Get Started";
+  const [state, setstate] = useState(false);
 
   return (
     <Container fluid id="jumbo">
@@ -13,6 +16,16 @@ export default () => {
             src={require("../../assets/pics/recruitask.png")}
             alt="logo"
           ></img>
+        </div>
+        <div id="btnLoginRow">
+          <img
+            className="btnLogin"
+            src={LoginIcon}
+            onClick={() => setstate(true)}
+            alt="no"
+          />
+          <a href="#" className="close" />
+          {state === true ? <DisplayModal show={state} /> : null}
         </div>
       </Row>
 
