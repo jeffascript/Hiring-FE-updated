@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import BlockButton from "../BlockButton/BlockButton";
 import DisplayModal from "./DisplayModal";
-import LoginIcon from "../../assets/icons/User.png"; 
+import LoginIcon from "../../assets/icons/User.png";
 export default () => {
   let text = "Get Started";
   const [state, setstate] = useState(false);
- 
 
   return (
     <div id="jumbo">
@@ -17,9 +16,14 @@ export default () => {
           ></img>
         </div>
         <div id="btnLoginRow">
-          <img className="btnLogin" src={LoginIcon} onClick={()=>setstate(true)} alt="no" />
-          <a href="#" className="close"/>
-            {state===true ? <DisplayModal show={state} /> : null }
+          <img
+            className="btnLogin"
+            src={LoginIcon}
+            onClick={() => setstate(true)}
+            alt="no"
+          />
+          <a href="#" className="close" />
+          {state === true ? <DisplayModal show={state} /> : null}
         </div>
       </div>
 
@@ -35,4 +39,3 @@ export default () => {
     </div>
   );
 };
-
