@@ -9,8 +9,8 @@
 }
 
 .captionTitle {
-  font-size: calc(1.5px + 1.1vw);//added
-    font-weight: bold;//added
+  font-size: calc(1.5px + 1.1vw); //added
+  font-weight: bold; //added
   @include captionText();
   @media screen and (max-width: 400px) {
     font-size: 3.5vw;
@@ -23,8 +23,6 @@
   text-align: center;
   flex-wrap: wrap;
 
-
-
   .feature {
     text-align: center !important;
     // display: inline-block;
@@ -33,7 +31,6 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-
 
     img {
       min-width: 50px;
@@ -66,4 +63,3 @@
     }
   }
 }
-
