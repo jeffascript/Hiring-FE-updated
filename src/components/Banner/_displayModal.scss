@@ -43,12 +43,16 @@ svg {
 .anticon svg {
   color: black;
 }
-button.ant-btn {
-  display: none;
-  .ant-btn-primary {
-    display: none;
-  }
-}
+// button.ant-btn {
+//   display: none;
+//   .ant-btn-primary {
+//     display: none;
+//   }
+// }
 p {
   padding: 10px;
 }
+
+// .ant-modal-footer > button {
+//   visibility: hidden !important;
+// }

@@ -3,10 +3,15 @@ import { Container, Row } from "reactstrap";
 import BlockButton from "../BlockButton/BlockButton";
 import DisplayModal from "./DisplayModal";
 import LoginIcon from "../../assets/icons/User.png";
+import { useCallback } from "react";
 
 export default () => {
   let text = "Get Started";
   const [state, setstate] = useState(false);
+
+  const resetModal = useCallback(() => {
+    setstate(false);
+  }, []);
 
   return (
     <Container fluid id="jumbo">
@@ -21,11 +26,13 @@ export default () => {
           <img
             className="btnLogin"
             src={LoginIcon}
-            onClick={() => setstate(true)}
+            onClick={() => setstate(!state)}
             alt="no"
           />
           <a href="#" className="close" />
-          {state === true ? <DisplayModal show={state} /> : null}
+          {state === true ? (
+            <DisplayModal show={state} resetModal={resetModal} />
+          ) : null}
         </div>
       </Row>
 
