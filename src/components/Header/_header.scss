@@ -1,19 +1,29 @@
-#imgHeader{
-    position: relative;
-    padding-top: 20px;
-    max-width: 270px;
+#imgHeader {
+  position: relative;
+  padding-top: 20px;
+  max-width: 270px;
 }
 
-.container-fluid{
-    padding: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/static/media/entrepreneur-working-on-his-macbook-2-picjumbo-com.52cd1be2.jpg) top center no-repeat !important;
-    background-size: 100% 100% !important;
+.mine-container {
+  padding: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/static/media/entrepreneur-working-on-his-macbook-2-picjumbo-com.52cd1be2.jpg)
+      top center no-repeat !important;
+  background-size: 100% 100% !important;
 }
 
-.displayText{
-    @include jumboText();
-    font-size: 11.5vh;
-    padding-top: 2em;
-    text-align: left;
-    padding-left: 1.5em;
+.displayText {
+  @include jumboText();
+  font-size: 11.5vh;
+  padding-top: 2em;
+  text-align: left;
+  padding-left: 1.5em;
+}
+
+#jumbo-welcome {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.6)),
+    url($backgroundImg) top center no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  padding: 0 8% 4% 8% !important;
 }
