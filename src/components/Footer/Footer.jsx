@@ -12,13 +12,13 @@ export default () => {
           <hr className="clearfix w-100 d-md-none pb-3" />
           <div className="col-md-6 my-auto">
             <div className="row">
-              <div className="col-md-4 mb-md-0 mb-3">
+              <div className="col-md-4 mb-md-0 mb-3 p-0">
                 <h5 className="text-uppercase">ABOUT US</h5>
               </div>
-              <div className="col-md-4 mb-md-0 mb-3">
+              <div className="col-md-4 mb-md-0 mb-3 p-0">
                 <h5 className="text-uppercase">SITEMAP</h5>
               </div>
-              <div className="col-md-4 mb-md-0 mb-3">
+              <div className="col-md-4 mb-md-0 mb-3 p-0">
                 <h5 className="text-uppercase">CONTACT US</h5>
               </div>
             </div>
