@@ -23,6 +23,8 @@ export default function DisplayCard({
   useEffect(() => {
     setstate(globalState.success);
   }, [globalState.success]);
+
+  console.log("hii")
   return (
     <>
       {tasks && (
