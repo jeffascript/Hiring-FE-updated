@@ -6,10 +6,15 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 import recruitLogo from "../../assets/pics/recruitask.png";
 
 export default function DisplayModal(props) {
-  const [modalVisible, hide] = useState(false);
+  const [modalVisible, hide] = useState(true);
 
   const state = useSelector((state) => state);
   const currentUser = useSelector((state) => state);
+
+  const cancelModal = () => {
+    props.resetModal();
+    hide(!modalVisible);
+  };
 
   return (
     <div>
@@ -19,9 +24,12 @@ export default function DisplayModal(props) {
         className="titleName"
         style={{ textAlign: "center" }}
         centered
-        visible={props.show}
-        onCancel={() => hide(false)}
+        maskClosable
+        visible={modalVisible}
+        closable
+        onCancel={() => cancelModal()}
         animation={false}
+        footer={null}
       >
         <Button
           id="btnGitHub"

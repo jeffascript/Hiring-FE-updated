@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getUserDataByToken, getAllTasks } from "../../actions/index.js";
+import { getUserDataByToken } from "../../actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import DisplayCard from "../../components/CardComponent/DisplayCard";
-import Header from "../Header/Header.jsx";
 import ProfileEditForm from "../Form/ProfileEditForm";
+import Header from "../Header/Header.jsx";
 
 const Welcome = () => {
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-
   const [currentUser, setCurrentUser] = useState();
   const [openEditForm, setOpenEditForm] = useState(false);
 
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
   const changeOpenEditForm = () => setOpenEditForm(!openEditForm);
   const updateCurrentUser = (user) => setCurrentUser(user);
 
   useEffect(() => {
     const token = localStorage.token;
     dispatch(getUserDataByToken(token));
-    dispatch(getAllTasks(token));
 
     const getCurrentUser = async () => {
       let request = await fetch(`${process.env.REACT_APP_URL}/api/user`, {
@@ -33,7 +31,6 @@ const Welcome = () => {
       }
     };
     getCurrentUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
