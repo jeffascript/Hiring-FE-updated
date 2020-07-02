@@ -11,11 +11,6 @@ export default function DisplayModal(props) {
   const state = useSelector((state) => state);
   const currentUser = useSelector((state) => state);
 
-  const cancelModal = () => {
-    props.resetModal();
-    hide(!modalVisible);
-  };
-
   return (
     <div>
       <Modal
@@ -27,7 +22,10 @@ export default function DisplayModal(props) {
         maskClosable
         visible={modalVisible}
         closable
-        onCancel={() => cancelModal()}
+        onCancel={() => {
+          props.resetModal();
+          hide(!modalVisible);
+        }}
         animation={false}
         footer={null}
       >
