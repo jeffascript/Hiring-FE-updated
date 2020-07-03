@@ -60,7 +60,7 @@ export default function DisplayCard(props) {
                         <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
                     </div>
                     <div>
-                        {state.message !== null && <Alert message={state.message} type="success" closable
+                        { state.message !== null && <Alert message={state.message} type="success" closable
                             onClose={onClose} />}
                     </div>
                     {/* {state.message === true && state.alertMsg==="Approve" ? 
