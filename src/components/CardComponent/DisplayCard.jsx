@@ -42,61 +42,29 @@ export default function DisplayCard(props) {
     dispatch({
       type: "MESSAGE",
       payload: null,
-    });
-  };
-
-  const tasksInDoing = userInfo?.selectedTasks.filter(
-    (t) => !t.isTaskCompleted
-  );
-  const tasksInDone = userInfo?.selectedTasks.filter((t) => t.isTaskCompleted);
-  return (
-    <>
-      {userInfo && userInfo.role === "admin" ? (
-        state.tasks &&
-        state.tasks.length > 0 && (
-          <>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "7px",
-              }}
-            >
-              <Button
-                type="primary"
-                danger
-                style={{ marginRight: "5px", display: "flex" }}
-                onClick={() => approveTasks()}
-              >
-                Approve Tasks
-              </Button>
-              <Button
-                type="primary"
-                danger
-                style={{ marginRight: "5px", display: "flex" }}
-                onClick={() => deleteTasks()}
-              >
-                Delete Tasks
-              </Button>
-              <Button
-                type="primary"
-                danger
-                style={{ marginRight: "5px", display: "flex" }}
-              >
-                Add Task
-              </Button>
-            </div>
-            <div>
-              {state.message !== null && (
-                <Alert
-                  message={state.message}
-                  type="success"
-                  closable
-                  onClose={onClose}
-                />
-              )}
-            </div>
-            {/* {state.message === true && state.alertMsg==="Approve" ? 
+    })
+    
+    
+    const tasksInDoing = userInfo?.selectedTasks.filter(t => !t.isTaskCompleted)
+    const tasksInDone = userInfo?.selectedTasks.filter(t => t.isTaskCompleted)
+    return (
+        <>
+            {userInfo && userInfo.role === "admin" ? state.tasks && state.tasks.length <= 0 ?
+                <div style={{ display: "flex", justifyContent: "center" }} >
+                    <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
+                </div>
+                : state.tasks.length > 0 &&
+                <>
+                    <div style={{ display: "flex", justifyContent: "center", padding: "7px" }}>
+                        <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => approveTasks()} >Approve Tasks</Button>
+                        <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => deleteTasks()} >Delete Tasks</Button>
+                        <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
+                    </div>
+                    <div>
+                        { state.message !== null && <Alert message={state.message} type="success" closable
+                            onClose={onClose} />}
+                    </div>
+                    {/* {state.message === true && state.alertMsg==="Approve" ? 
                     <Alert message="Tasks approved." type="success"  closable
                         onClose={onClose} /> : state.alertMsg==="Delete" ?
                         <Alert message="Tasks deleted." type="success"  closable
