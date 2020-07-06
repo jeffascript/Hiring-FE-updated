@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Card, Checkbox } from "antd";
+import { Card, Checkbox, Button } from "antd";
 import { useSelector } from "react-redux";
 import Where from "../../assets/icons/Where.png";
 import Duedate from "../../assets/icons/Duedate.png";
+import SubmitTask from "../submitTask/SubmitTask";
 
 export default function DisplayCard({
   titleColor,
@@ -14,7 +15,9 @@ export default function DisplayCard({
 }) {
   const { taskTitle, techStack, city, createdAt } = tasks;
   const [state, setstate] = useState(false);
+  const [submitModalState, setSubmitModalState] = useState(false);
   const globalState = useSelector((state) => state);
+
   const toggle = (e) => {
     setstate((e.target.value = !state));
     setId(taskId);
@@ -23,6 +26,10 @@ export default function DisplayCard({
   useEffect(() => {
     setstate(globalState.success);
   }, [globalState.success]);
+
+  const toggleSubmitModal = () => {
+    setSubmitModalState(!submitModalState)
+  }
 
   console.log("hii")
   return (
@@ -76,7 +83,9 @@ export default function DisplayCard({
               ) : (
                 <p className="displayStatus">{status}</p>
               )}
+              {status === "Doing" && <Button  type="primary"> submit</Button> }
             </Card>
+            <SubmitTask modal={submitModalState} toggle={setSubmitModalState}/>
           </div>
         </div>
       )}
