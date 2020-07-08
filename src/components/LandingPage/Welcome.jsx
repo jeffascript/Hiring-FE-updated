@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import DisplayCard from "../../components/CardComponent/DisplayCard";
 import Header from "../Header/Header.jsx";
 import ProfileEditForm from "../Form/ProfileEditForm";
+import { useHistory } from "react-router-dom";
 
-const Welcome = () => {
+
+const Welcome = (props) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -14,11 +16,17 @@ const Welcome = () => {
 
   const changeOpenEditForm = () => setOpenEditForm(!openEditForm);
   const updateCurrentUser = (user) => setCurrentUser(user);
+  const history =  useHistory()
 
   useEffect(() => {
     const token = localStorage.token;
-    dispatch(getUserDataByToken(token));
-    dispatch(getAllTasks(token));
+    if (token) {
+      dispatch(getUserDataByToken(token));
+      dispatch(getAllTasks(token));
+    }
+    else {     
+     history.push("/")
+    }
 
     const getCurrentUser = async () => {
       let request = await fetch(`${process.env.REACT_APP_URL}/api/user`, {

@@ -29,6 +29,10 @@ export default function DisplayModal(props) {
         animation={false}
         footer={null}
       >
+        <div >
+        {/* <img src={recruitLogo} alt="nothing"/> */}
+        </div>
+        
         <Button
           id="btnGitHub"
           href={`${process.env.REACT_APP_URL}/api/auth/github`}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { approveSelectedTasks, deleteSelectedTasks } from "../../actions/index";
 import { Button, Alert } from "antd";
 import CardList from "../CardComponent/CardList";
+import Loader from "react-loader-spinner";
 
 export default function DisplayCard(props) {
     //console.log(React.version)
@@ -29,6 +30,7 @@ export default function DisplayCard(props) {
             if (cardId !== undefined)
                 dispatch(approveSelectedTasks(token, cardId[i]));
         }
+        setCardId([])
     };
 
     const deleteTasks = () => {
@@ -36,6 +38,7 @@ export default function DisplayCard(props) {
         for (let i = 0; i < cardId.length; i++) {
             if (cardId !== undefined) dispatch(deleteSelectedTasks(token, cardId[i]));
         }
+        setCardId([])
     };
 
     const onClose = () => {
@@ -44,43 +47,55 @@ export default function DisplayCard(props) {
             payload: null,
         })
     }
-
-
-        const tasksInDoing = userInfo?.selectedTasks.filter(t => !t.isTaskCompleted)
-        const tasksInDone = userInfo?.selectedTasks.filter(t => t.isTaskCompleted)
-        return (
-            <>
-                {userInfo && userInfo.role === "admin" ? state.tasks && state.tasks.length <= 0 ?
-                <div style={{ display: "flex", justifyContent: "center" }} >
-                    <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
-                </div>
-                : state.tasks.length > 0 &&
-                <>
-                    <div style={{ display: "flex", justifyContent: "center", padding: "7px" }}>
-                        <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => approveTasks()} >Approve Tasks</Button>
-                        <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => deleteTasks()} >Delete Tasks</Button>
+    const tasksInDoing = userInfo?.selectedTasks.filter(t => !t.isTaskCompleted)
+    const tasksInDone = userInfo?.selectedTasks.filter(t => t.isTaskCompleted)
+    return (
+        <>
+            {/* { (()=>{ if(userInfo && userInfo.role === "admin"){
+             if (state.tasks && state.tasks.length <= 0 ){
+                
+             } 
+        }
+    })() } */}
+            {!userInfo && <Loader
+                style={{
+                    padding: "200px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+                type="Oval"
+                color="#00BFFF"
+                height={70}
+                width={70}
+                 //3 secs
+            />}
+            {userInfo && userInfo.role === "admin"
+                ? state.tasks && state.tasks.length <= 0
+                    ? <div style={{ display: "flex", justifyContent: "center" }} >
                         <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
                     </div>
-                    <div>
-                        {state.message !== null && <Alert message={state.message} type="success" closable
-                        onClose={onClose}  />}
-                    </div>
-                    {/* {state.message === true && state.alertMsg==="Approve" ? 
-                    <Alert message="Tasks approved." type="success"  closable
-                        onClose={onClose} /> : state.alertMsg==="Delete" ?
-                        <Alert message="Tasks deleted." type="success"  closable
-                        onClose={onClose} /> : null } */}
-
-                    <div className="row"  >
-                        {state.tasks.map((task, index) => (
-                            task.approvedByAdmin === true ?
-                                <CardList titleColor="status-admin-approve" setId={setCardsId} tasks={task} key={index} taskId={task._id} status="" />
-                                :
-                                task.approvedByAdmin === false ?
-                                    <CardList titleColor="status-admin-notapproved" setId={setCardsId} tasks={task} key={index} taskId={task._id} status="" /> : null
-                        ))}
-                    </div>
-                </>
+                    : state.tasks.length > 0 &&
+                    <>
+                        <div style={{ display: "flex", justifyContent: "center", padding: "7px" }}>
+                            <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => approveTasks()} >Approve Tasks</Button>
+                            <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} onClick={() => deleteTasks()} >Delete Tasks</Button>
+                            <Button type="primary" danger style={{ marginRight: "5px", display: "flex" }} >Add Task</Button>
+                        </div>
+                        <div>
+                            {state.message !== null && <Alert message={state.message} type="success" closable
+                                onClose={onClose} />}
+                        </div>
+                        <div className="row"  >
+                            {state.tasks.map((task, index) => (
+                                task.approvedByAdmin === true ?
+                                    <CardList titleColor="status-admin-approve" setId={setCardsId} tasks={task} key={index} taskId={task._id} status="" />
+                                    :
+                                    task.approvedByAdmin === false ?
+                                        <CardList titleColor="status-admin-notapproved" setId={setCardsId} tasks={task} key={index} taskId={task._id} status="" /> : null
+                            ))}
+                        </div>
+                    </>
                 :
                 <>
                     {userInfo && userInfo.selectedTasks.length > 0 ?
@@ -109,14 +124,18 @@ export default function DisplayCard(props) {
                             }
                         </>
                         :
-                        <div className="alert alert-danger" role="alert"
-                            style={{ fontWeight: "bolder", fontSize: "30px", textAlign: "center" }} >
-                            You do not have any tasks.
-                        </div>
+                        <>
+                            {userInfo && userInfo.selectedTasks.length === 0 ?
+                                <div className="alert alert-danger" role="alert"
+                                    style={{ fontWeight: "bolder", fontSize: "30px", textAlign: "center" }} >
+                                    You do not have any tasks.
+                                </div> : null
+                            }
+                        </>
                     }
                 </>
             }
-            </>
-            );
-    
+        </>
+    );
+
 }

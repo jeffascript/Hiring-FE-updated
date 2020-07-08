@@ -90,10 +90,10 @@ export const deleteSelectedTasks = (token, taskId) => {
       }
     );
     if (apiResp.ok) {
-      const respJson = await apiResp.json();
+       await apiResp.json();
       dispatch({
         type: "DELETE_TASK",
-        payload: respJson._id,
+        payload: taskId,
       });
       dispatch({
         type: "MESSAGE",
@@ -102,7 +102,7 @@ export const deleteSelectedTasks = (token, taskId) => {
     } else {
       dispatch({
         type: "MESSAGE",
-        payload: "false",
+        payload: null,
       });
     }
   };

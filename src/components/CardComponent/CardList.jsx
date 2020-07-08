@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Card, Checkbox } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Where from "../../assets/icons/Where.png";
 import Duedate from "../../assets/icons/Duedate.png";
+import { ConsoleIcon } from "evergreen-ui";
 
 export default function DisplayCard({
   titleColor,
@@ -16,15 +17,17 @@ export default function DisplayCard({
   const [state, setstate] = useState(false);
   const globalState = useSelector((state) => state);
   const toggle = (e) => {
-    setstate((e.target.value = !state));
+    console.log(e.target.checked,"vl")
+  //  setstate((e.target.checked = !state));
+  setstate(e.target.checked)
+  
     setId(taskId);
   };
-
-  useEffect(() => {
-    setstate(globalState.success);
-  }, [globalState.success]);
-
-  console.log("hii")
+ 
+console.log(globalState.message)
+  useEffect(() => {  
+    setstate(false); 
+  }, [globalState.message]);
   return (
     <>
       {tasks && (
