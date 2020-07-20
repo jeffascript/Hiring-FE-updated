@@ -56,12 +56,3 @@ p {
 // .ant-modal-footer > button {
 //   visibility: hidden !important;
 // }
-
-button.ant-modal-close {
-  &:hover {
-    outline: 0 !important;
-  }
-  &:focus {
-    outline: 0 !important;
-  }
-}

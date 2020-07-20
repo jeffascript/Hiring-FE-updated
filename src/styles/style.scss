@@ -25,6 +25,16 @@
 // // @import '../components/LandingPage/landingPageVariables';
 // @import '../components/BlockButton/button';
 
+button.ant-modal-close,
+button.ant-alert-close-icon {
+  &:hover {
+    outline: 0 !important;
+  }
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
 // body {
 //   display: flex;
 //   height: relative;
