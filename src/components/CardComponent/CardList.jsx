@@ -31,7 +31,7 @@ export default function DisplayCard({
     setSubmitModalState(!submitModalState)
   }
 
-  console.log("hii")
+  console.log(taskId)
   return (
     <>
       {tasks && (
@@ -88,7 +88,7 @@ export default function DisplayCard({
           </div>
         </div>
       )}
-      <SubmitTasks modal={submitModalState} toggle={toggleSubmitModal} taskId={taskId}/>
+      <SubmitTasks modal={submitModalState} toggle={toggleSubmitModal} taskId={tasks}/>
     </>
   );
 }
